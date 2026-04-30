@@ -255,6 +255,8 @@ test.describe('Counter', () => {
     await newTodo.press('Enter');
 
     // 30 Verify counter shows 1 item
+    await expect(todoCount).toHaveText('1 item left');
+
 
     // Add the second item
     await newTodo.fill(TODO_ITEMS[1]);
