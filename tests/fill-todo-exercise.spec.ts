@@ -206,6 +206,7 @@ test.describe('Editing', () => {
     await todoItem.dblclick();
 
     // 28 Assert that the completion checkbox is no longer visible
+    await expect(todoItem.getByRole('checkbox')).not.toBeVisible();
 
     // Assert that the text label is also hidden
     await expect(todoItem.locator('label', {
