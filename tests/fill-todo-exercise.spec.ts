@@ -134,16 +134,20 @@ test.describe('Item', () => {
     await expect(firstTodo).toHaveClass('completed');
 
     // 18 Locate the second todo item in the list (index 1)
+    const secondTodo = page.getByTestId('todo-item').nth(1);
 
     // 19 Assert that the second item does NOT have the 'completed' class yet
+    await expect(secondTodo).not.toHaveClass('completed');
 
     // 20 Find the checkbox within the second item and check it
+    await secondTodo.getByRole('checkbox').check();
 
     // 21 Final assertion that BOTH items now have the 'completed' class
     const secondTodo = page.getByTestId('todo-item').nth(1);
 
     await expect(firstTodo).toHaveClass('completed');
     await expect(secondTodo).toHaveClass('completed');
+
     // 21 NOTE: The code above just assert the first item
   });
 
