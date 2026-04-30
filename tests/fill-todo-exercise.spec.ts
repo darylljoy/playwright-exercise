@@ -45,10 +45,14 @@ test.describe('New Todo', () => {
   // Define a test case to ensure the input field is cleared after an item is added
   test('should clear text input field when an item is added', async ({ page }) => {
     // 7 Fill the input with the first sample item
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).fill(TODO_ITEMS[0]);
 
     // 8 Press Enter to submit the item
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).press('Enter');
 
     // 9 Assert that the input field is empty after the submission
+    await expect(page.getByRole('textbox', { name: 'What needs to be done?' })).toBeEmpty();
+
   });
 
   // Define a test case to verify that new items are added to the end of the list
