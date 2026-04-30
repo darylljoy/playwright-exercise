@@ -4,7 +4,7 @@ import { test, expect, type Page } from '@playwright/test';
 // Define a hook that runs before each test case to set up the initial state
 test.beforeEach(async ({ page }) => {
   // Navigate the browser to the TodoMVC demo application URL
-  await page.goto('https://demo.playwright.dev/todomvc');
+  await page.goto('https://demo.playwright.dev/todomvc/#/');
 });
 
 // Define a constant array containing sample todo items for testing
@@ -19,16 +19,27 @@ test.describe('New Todo', () => {
   // Define a test case to verify that multiple todo items can be added
   test('should allow me to add todo items', async ({ page }) => {
     // 1 Create 1st TODO by selecting locator
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).click();
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).fill('Create exercise 1');
 
     // 2 Simulate pressing the Enter key to add the item to the list
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).press('Enter');
 
     // 3 Assert that the list contains exactly the first todo item by checking the 'todo-title' elements
+    await expect(page.getByTestId('todo-title')).toHaveText('Create exercise 1');
 
     // 4 Create 2nd TODO
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).click();
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).fill('Create Exercise 2');
 
     // 5 Simulate pressing the Enter key to add the second item
+    await page.getByRole('textbox', { name: 'What needs to be done?' }).press('Enter');
 
     // 6 Assert that the list now contains both the first and second items in the correct order
+    await expect(page.getByTestId('todo-title')).toHaveText([
+      'Create exercise 1',
+      'Create Exercise 2'
+      ]);
   });
 
   // Define a test case to ensure the input field is cleared after an item is added
