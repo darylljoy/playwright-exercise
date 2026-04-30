@@ -240,7 +240,7 @@ test.describe('Editing', () => {
 
 
 
-
+//merge checking 
 // Group tests for the item counter functionality
 test.describe('Counter', () => {
   // Test that the counter updates correctly as items are added
