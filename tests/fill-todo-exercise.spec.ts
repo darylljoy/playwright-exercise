@@ -120,10 +120,7 @@ test.describe('Item', () => {
     // 21 NOTE: The code above just assert the first item
   });
 
-
-
-
-  // Define a test case for un-marking a completed item
+   // Define a test case for un-marking a completed item
   test('should allow me to un-mark items as complete', async ({ page }) => {
     // Create a locator for the main input field
     const newTodo = page.getByPlaceholder('What needs to be done?');
@@ -156,6 +153,8 @@ test.describe('Item', () => {
     await expect(firstTodo).not.toHaveClass('completed');
     await expect(secondTodo).not.toHaveClass('completed');
   });
+
+
 
 
   
