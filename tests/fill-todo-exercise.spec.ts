@@ -257,6 +257,7 @@ test.describe('Editing', () => {
     await todoItems.nth(1).dblclick();
 
     // 29 Clear the text entirely
+    await todoItems.nth(1).getByRole('textbox', { name: 'Edit' }).fill('');
 
     // Submit the empty value
     await todoItems.nth(1).getByRole('textbox', { name: 'Edit' }).press('Enter');
