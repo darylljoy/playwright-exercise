@@ -91,9 +91,16 @@ test.describe('Mark all as completed', () => {
   // Define a test case to verify that the 'Mark all' checkbox works
   test('should allow me to mark all items as completed', async ({ page }) => {
     // 16 Locate the toggle-all checkbox by its label and check it. This mean it need to complete all todos
+    await page.getByRole('listitem').filter({ hasText: TODO_ITEMS[0] }).getByLabel('Toggle Todo').check();
+    await page.getByRole('listitem').filter({ hasText: TODO_ITEMS[1] }).getByLabel('Toggle Todo').check();
+    await page.getByRole('listitem').filter({ hasText: TODO_ITEMS[2] }).getByLabel('Toggle Todo').check();
 
     // 17 Assert that every todo item now has the CSS class 'completed'.
-
+    await expect(page.getByTestId('todo-item')).toHaveClass([
+      'completed',
+      'completed',
+      'completed'
+    ]);
   });
 });
 
