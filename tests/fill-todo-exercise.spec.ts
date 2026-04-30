@@ -61,14 +61,19 @@ test.describe('New Todo', () => {
     await createDefaultTodos(page);
 
     // 10 Create a locator for the element that displays the remaining item count
+    const todoCount = page.getByTestId('todo-count');
 
     // 11 Assert that the text "3 items left" is visible on the page
+    await expect(page.getByText('3 items left')).toBeVisible();
 
     // 12 Assert that the specific todo count locator has the exact text "3 items left"
+    await expect(todoCount).toHaveText('3 items left');
     
     // 13 Assert that the todo count locator contains the character "3"
+    await expect(todoCount).toContainText('3');
 
     // 14 Assert that the todo count locator matches a regular expression for the number 3
+    await expect(todoCount).toHaveText(/3/);
 
     // 15 Assert that the entire list of 'todo-title' elements matches our TODO_ITEMS array exactly
     await expect(page.getByTestId('todo-title')).toHaveText(TODO_ITEMS);
