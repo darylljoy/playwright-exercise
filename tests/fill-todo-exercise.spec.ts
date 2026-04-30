@@ -170,10 +170,13 @@ test.describe('Item', () => {
     await secondTodo.dblclick();
 
     // 25 Assert that the editing textbox appears and contains the current text
+    const editInput = secondTodo.getByRole('textbox', {name: 'Edit'});
 
     // 26 Fill the editing textbox with new text
+    await expect(editInput).toBeVisible();
 
     // 27 Press Enter to save the changes
+    await expect(editInput).toHaveValue(TODO_ITEMS[1]);
 
   
     // Verify the list contains the original first item, the updated second item, and the original third item
